@@ -1,16 +1,49 @@
 <script>
+   let ComputerChoice;
+   
+   // Computers choice
     function getComputerChoice(){
-        let randomNum = Math.floor(Math.random() * 3) + 1
+        let randomNum = Math.floor(Math.random() * 3) + 1;
         if (randomNum == 1){
-            return 'Rock'
+            return 'rock';
         }
         if (randomNum == 2){
-            return 'Paper'
+            return 'paper';
         }
         if (randomNum == 3){
-            return 'Scissors'
+            return 'scissors';
         }
     }
-    console.log(getComputerChoice())
+
+    let computerChoice = getComputerChoice();
+    console.log(`The Computer chose ${computerChoice}`)
+
+    // Players choice
+    let playerChoice = prompt('Rock, Paper, or Scissors? ').toLowerCase();
+    console.log(`The Player chose ${playerChoice}.`)
+
+    // Comparison
+    function compareChoices(a, d){
+        if (d == a){
+            return 'Tie!'
+        }
+        else if (d == 'rock'){
+            return (a == 'scissors') ? 'Player wins!' : 'Computer wins!' 
+        }
+        else if (d == 'paper'){
+            return (a == 'rock') ? 'Player wins!' : 'Computer wins!' 
+        }
+        else if (d == 'scissors'){
+            return (a == 'paper') ? 'Player wins!' : 'Computer wins!' 
+        }
+    }
+    console.log(compareChoices(computerChoice, playerChoice))
 
 </script>
+
+plan is to 
+- make function for computers choice 
+- make function for players choice
+    - make it so player can only input a string
+- compare these 2 functions to get a point 
+- after 5 points let the game end
