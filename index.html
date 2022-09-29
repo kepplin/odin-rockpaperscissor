@@ -40,7 +40,9 @@ for (let i = 0; i < 5; i++) {
             computerCounter++;
             roundWinner = 'Computer wins!';
         }
+        console.log('')
         console.log(`${roundWinner} Player: ${playerCounter} Computer: ${computerCounter}`);
+        console.log('')
         }
 
     // Computers choice 
@@ -54,5 +56,16 @@ for (let i = 0; i < 5; i++) {
     // Calling the function
     compareChoices(playerChoice, computerChoice);
 
+}
+
+// Final Winner 
+if (playerCounter == computerCounter) {
+    console.log('It is a tie.')
+}
+else if (playerCounter > computerCounter) {
+    console.log('The player has won!')
+}
+else if (playerCounter < computerCounter) {
+    console.log('The computer has won!')
 }
 </script>
