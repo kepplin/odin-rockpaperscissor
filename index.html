@@ -49,11 +49,11 @@ for (let i = 0; i < 5; i++) {
     // Computers choice 
     let computerChoice = getComputerChoice();
     console.log(`The Computer chose ${computerChoice}`)
-    
+       
+    // Players choice
     let playerChoice = playerSelection();
     console.log(`The Player chose ${playerChoice}`)
-   
-    // Players choice
+    
     function playerSelection() {
         let input = prompt("Type Rock, Paper, or Scissors");
         while (input == null) {
