@@ -1,5 +1,6 @@
 <script> 
 // Points
+let choices = ["rock", "paper", "scissors"];
 let playerCounter = 0;
 let computerCounter = 0;
 let roundWinner = '';
@@ -48,11 +49,33 @@ for (let i = 0; i < 5; i++) {
     // Computers choice 
     let computerChoice = getComputerChoice();
     console.log(`The Computer chose ${computerChoice}`)
-
-    // Players choice
-    let playerChoice = prompt('Rock, Paper, or Scissors? ').toLowerCase();
-    console.log(`The Player chose ${playerChoice}.`)
     
+    let playerChoice = playerSelection();
+    console.log(`The Player chose ${playerChoice}`)
+   
+    // Players choice
+    function playerSelection() {
+        let input = prompt("Type Rock, Paper, or Scissors");
+        while (input == null) {
+            input = prompt("Type Rock, Paper, or Scissors");
+        }
+        input = input.toLowerCase();
+        let check = validateInput(input);
+        while (check == false) {
+            input = prompt(
+                "Type Rock, Paper, or Scissors"
+            );
+            while (input == null) {
+                input = prompt("Type Rock, Paper, or Scissors");
+            }
+            input = input.toLowerCase();
+            check = validateInput(input);
+        }
+        return input;
+    }
+    function validateInput(choice) {
+        return choices.includes(choice);
+    }   
     // Calling the function
     compareChoices(playerChoice, computerChoice);
 
