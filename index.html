@@ -61,12 +61,17 @@
         const computerChoice = document.querySelector('.computerChoice');
         const resultsText = document.querySelector('.resultsText');
         const selectionButtons = document.querySelectorAll('.selectionButton');
+        const playAgainButton = document.querySelector('.playAgain')
         const playerScoreSpan = document.querySelector('[data-player-score]');
         const computerScoreSpan = document.querySelector('[data-computer-score]');
-
+    
         let player;
         let computer;
         let result; 
+
+        playAgainButton.addEventListener('click', () => {
+            location.reload();
+        })
 
         selectionButtons.forEach(button => button.addEventListener('click', () => {
             player = button.textContent;
@@ -81,6 +86,7 @@
                 incrementScore(computerScoreSpan);
             }
         }))
+
 
     // Computer Choice
         function getComputerChoice(){
