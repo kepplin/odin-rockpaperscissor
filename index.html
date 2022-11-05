@@ -11,13 +11,16 @@
     <button class="selectionButton rockButton">Rock</button>
     <button class="selectionButton paperButton">Paper</button>
     <button class="selectionButton scissorsButton">Scissors</button>
+    <button class="playAgain">Play Again?</button>
 </div>
 
 <div class="scores">
     <div>
-        <p class="playerScore">Player: </p>
-        <p class="computerScore">Computer: </p>
+        <p class="playerChoice">Player Choice: </p>
+        <p class="computerChoice">Computer Choice: </p>
         <p class="resultsText">Result: </p>
+        <p class="playerScore">Player Score: <span data-player-score>0</span> </p>
+        <p class="computerScore">Computer Score: <span data-computer-score>0</span></p>
     </div>
 </div>    
     
@@ -31,11 +34,18 @@
             margin: 10px;
             transition: 150ms;
         }
+        .playAgain{
+            width: 90px;
+            height: 40px;
+            margin: 10px;
+            transition: 150ms;
+        }
         .buttons{
             display: flex;
             justify-content: center;
+            align-items: center;
         }
-        .selectionButton:hover{
+        .selectionButton:hover, .playAgain:hover{
             transform: scale(1.1);
         }
         .scores{
@@ -47,10 +57,12 @@
     <script> 
 
     // UI Buttons
-        const playerScore = document.querySelector('.playerScore');
-        const computerScore = document.querySelector('.computerScore');
+        const playerChoice = document.querySelector('.playerChoice');
+        const computerChoice = document.querySelector('.computerChoice');
         const resultsText = document.querySelector('.resultsText');
         const selectionButtons = document.querySelectorAll('.selectionButton');
+        const playerScoreSpan = document.querySelector('[data-player-score]');
+        const computerScoreSpan = document.querySelector('[data-computer-score]');
 
         let player;
         let computer;
@@ -59,9 +71,15 @@
         selectionButtons.forEach(button => button.addEventListener('click', () => {
             player = button.textContent;
             getComputerChoice();
-            playerScore.textContent = `Player: ${player}`;
-            computerScore.textContent = `Computer: ${computer}`;
+            playerChoice.textContent = `Player Choice: ${player}`;
+            computerChoice.textContent = `Computer Choice: ${computer}`;
             resultsText.textContent = `Result: ${compareChoices()}`;
+            if (resultsText.textContent == 'Result: Player wins!'){
+                incrementScore(playerScoreSpan);
+            }
+            if (resultsText.textContent == 'Result: Computer wins!'){
+                incrementScore(computerScoreSpan);
+            }
         }))
 
     // Computer Choice
@@ -95,6 +113,10 @@
                 return 'Computer wins!';
             } 
        }       
+
+       function incrementScore(scoreSpan){
+        scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1
+       }
 
     </script>
 </body>
