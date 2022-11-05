@@ -1,94 +1,102 @@
-<script> 
-// Points
-let choices = ["rock", "paper", "scissors"];
-let playerCounter = 0;
-let computerCounter = 0;
-let roundWinner = '';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="buttons">
+    <button class="selectionButton rockButton">Rock</button>
+    <button class="selectionButton paperButton">Paper</button>
+    <button class="selectionButton scissorsButton">Scissors</button>
+</div>
 
-// For loop to play 5 total rounds
-for (let i = 0; i < 5; i++) {
-   
-    // Computers choice function
-    function getComputerChoice(){
-        let randomNum = Math.floor(Math.random() * 3) + 1;
-        if (randomNum == 1){
-            return 'rock';
-        }
-        if (randomNum == 2){
-            return 'paper';
-        }
-        if (randomNum == 3){
-            return 'scissors';
-        }
-    }
-
-    // Comparison
-    function compareChoices(playerChoice, computerChoice){
-        if (playerChoice == computerChoice){
-            roundWinner = 'Tie!';
-        }
-        else if ((playerChoice === 'rock' && computerChoice === 'scissors') ||
-                (playerChoice === 'scissors' && computerChoice === 'paper') ||
-                (playerChoice === 'paper' && computerChoice === 'rock')) {
-            
-            playerCounter++;
-            roundWinner = 'Player wins!';
-        }
-        else if ((computerChoice === 'rock' && playerChoice === 'scissors') ||
-                (computerChoice === 'scissors' && playerChoice === 'paper') ||
-                (computerChoice === 'paper' && playerChoice === 'rock')) {
-            
-            computerCounter++;
-            roundWinner = 'Computer wins!';
-        }
-        console.log('')
-        console.log(`${roundWinner} Player: ${playerCounter} Computer: ${computerCounter}`);
-        console.log('')
-        }
-
-    // Computers choice 
-    let computerChoice = getComputerChoice();
-    console.log(`The Computer chose ${computerChoice}`)
-       
-    // Players choice
-    let playerChoice = playerSelection();
-    console.log(`The Player chose ${playerChoice}`)
+<div class="scores">
+    <div>
+        <p class="playerScore">Player: </p>
+        <p class="computerScore">Computer: </p>
+        <p class="resultsText">Result: </p>
+    </div>
+</div>    
     
-    function playerSelection() {
-        let input = prompt("Type Rock, Paper, or Scissors");
-        while (input == null) {
-            input = prompt("Type Rock, Paper, or Scissors");
+    <style>
+        .selectionButton{
+            background-color: orange;
+            border: 1px solid black;
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 150ms;
         }
-        input = input.toLowerCase();
-        let check = validateInput(input);
-        while (check == false) {
-            input = prompt(
-                "Type Rock, Paper, or Scissors"
-            );
-            while (input == null) {
-                input = prompt("Type Rock, Paper, or Scissors");
+        .buttons{
+            display: flex;
+            justify-content: center;
+        }
+        .selectionButton:hover{
+            transform: scale(1.1);
+        }
+        .scores{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+    <script> 
+
+    // UI Buttons
+        const playerScore = document.querySelector('.playerScore');
+        const computerScore = document.querySelector('.computerScore');
+        const resultsText = document.querySelector('.resultsText');
+        const selectionButtons = document.querySelectorAll('.selectionButton');
+
+        let player;
+        let computer;
+        let result; 
+
+        selectionButtons.forEach(button => button.addEventListener('click', () => {
+            player = button.textContent;
+            getComputerChoice();
+            playerScore.textContent = `Player: ${player}`;
+            computerScore.textContent = `Computer: ${computer}`;
+            resultsText.textContent = `Result: ${compareChoices()}`;
+        }))
+
+    // Computer Choice
+        function getComputerChoice(){
+           let randomNum = Math.floor(Math.random() * 3) + 1;
+           if (randomNum == 1){
+               computer = 'Rock';
+           }
+           if (randomNum == 2){
+               computer = 'Paper';
+           }
+           if (randomNum == 3){
+               computer = 'Scissors';
+           }
+        }    
+
+        function compareChoices(){
+            if (player == computer){
+                return 'Tie!';
             }
-            input = input.toLowerCase();
-            check = validateInput(input);
-        }
-        return input;
-    }
-    function validateInput(choice) {
-        return choices.includes(choice);
-    }   
-    // Calling the function
-    compareChoices(playerChoice, computerChoice);
+            else if ((player === 'Rock' && computer === 'Scissors') ||
+                    (player === 'Scissors' && computer === 'Paper') ||
+                    (player === 'Paper' && computer === 'Rock')) {
+                    
+                return 'Player wins!';
+            }
+            else if ((computer === 'Rock' && player === 'Scissors') ||
+                    (computer === 'Scissors' && player === 'Paper') ||
+                    (computer === 'Paper' && player === 'Rock')) {
 
-}
+                return 'Computer wins!';
+            } 
+       }       
 
-// Final Winner 
-if (playerCounter == computerCounter) {
-    console.log('It is a tie.')
-}
-else if (playerCounter > computerCounter) {
-    console.log('The player has won!')
-}
-else if (playerCounter < computerCounter) {
-    console.log('The computer has won!')
-}
-</script>
+    </script>
+</body>
+</html>
+
