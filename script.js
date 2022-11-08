@@ -44,8 +44,6 @@ selectionButtons.forEach(button => button.addEventListener('click', function but
     }
 }))
 
-
-
 // Computer Choice
 function getComputerChoice(){
    let randomNum = Math.floor(Math.random() * 3) + 1;
