@@ -21,6 +21,7 @@
         <p class="resultsText">Result: </p>
         <p class="playerScore">Player Score: <span data-player-score>0</span> </p>
         <p class="computerScore">Computer Score: <span data-computer-score>0</span></p>
+        <p class="finalWinner"></p>
     </div>
 </div>    
     
@@ -64,6 +65,10 @@
         const playAgainButton = document.querySelector('.playAgain')
         const playerScoreSpan = document.querySelector('[data-player-score]');
         const computerScoreSpan = document.querySelector('[data-computer-score]');
+        const finalWinner = document.querySelector('.finalWinner');
+        const rockButton = document.querySelector('.rockButton');
+        const paperButton = document.querySelector('.paperButton');
+        const scissorsButton = document.querySelector('.scissorsButton');
     
         let player;
         let computer;
@@ -73,7 +78,7 @@
             location.reload();
         })
 
-        selectionButtons.forEach(button => button.addEventListener('click', () => {
+        selectionButtons.forEach(button => button.addEventListener('click', function buttonF() { 
             player = button.textContent;
             getComputerChoice();
             playerChoice.textContent = `Player Choice: ${player}`;
@@ -85,7 +90,19 @@
             if (resultsText.textContent == 'Result: Computer wins!'){
                 incrementScore(computerScoreSpan);
             }
+            if (playerScoreSpan.textContent == 5){
+                finalWinner.textContent = 'The player has won this battle';
+            }
+            if (computerScoreSpan.textContent == 5){
+                finalWinner.textContent = 'The computer has won this battle';
+            }
+            if (computerScoreSpan.textContent == 5 || playerScoreSpan.textContent == 5){
+                rockButton.setAttribute('disabled', 'disabled');
+                paperButton.setAttribute('disabled', 'disabled');
+                scissorsButton.setAttribute('disabled', 'disabled');
+            }
         }))
+
 
 
     // Computer Choice
