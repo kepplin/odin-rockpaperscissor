@@ -4,6 +4,10 @@ https://kepplin.github.io/odin-rockpaperscissor/
 
 ![demorps](https://user-images.githubusercontent.com/107027281/211229607-3701be47-54f3-47c3-b7d2-4ceb66083f8e.png)
 
+## About
+
+This was a two part project for [The Odin Project](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors). The first part was simply making a rock paper scissors game to be played in the console. The second part was to add an UI to this page. The second part of this project felt somewhat overwhelming and I found myself finding a lot of bugs. Not my proudest project...
+
 ## Instructions
 
 - Click on a button to select your choice for rock paper scissors against the computer. As soon as you press a button, the computer will randomly choose and the text will announce who won the round and got a point.
